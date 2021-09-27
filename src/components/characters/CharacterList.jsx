@@ -17,7 +17,7 @@ export default function CharacterList() {
   }
  
   return (
-    <ul aria-label="character-list">
+    <ul aria-label="character-list" role="list">
       {characterList.map((character) => (
         <li key={character.id}>
           <Link key={character.id} to={`${character.id}`}>
