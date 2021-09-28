@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import CharacterList from '../characters/CharacterList';
 import Character from '../characters/Character';
+import { MemoryRouter } from 'react-router-dom';
 
 
 describe('character component', () => {
@@ -19,12 +20,14 @@ describe('character component', () => {
 });
 
 describe('character list component', () => {
-  it('displays a list of characters', () => {
+  it('displays a list of characters', async () => {
     render(
-      <CharacterList />
+      <MemoryRouter>
+        <CharacterList />
+      </MemoryRouter>
     );
 
-    const gif = screen.getByRole('img', { name: 'loading gif' });
-    expect(gif).toMatchSnapshot();
+    const list = await screen.findByLabelText('character-list');
+    expect(list).toMatchSnapshot();
   });
 });
